@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <title>ShoMusic</title>
+</head>
+<body>
+    <div class="menu">
+        <div class="izquierda">
+            <a href=""><img src="https://ia600308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt=""></a>
+        </div>
+        <div class="centro">
+        <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
+        </div>
+        <div class="derecha">
+        <a href=""><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
+        </div>
+    </div>
+    <div class="poster-principal">
+        <img src="https://i.scdn.co/image/ab6761860000101602540a73e56f4cd5e2f9881b" alt="">
+    </div>
+    <div class="albums-favoritos">
+        <div class="arriba">
+            <div class="favoritos">
+                <h5>FAVORITOS</h5>
+            </div>
+            <div class="mas">
+                <a class="mass" href=""><h5>+</h5></a>
+            </div>
+            </div>
+            <div class="posters">
+                <div class="todos-posters">
+                    <a href="Trap-capos.html"><img src="https://i.scdn.co/image/ab67616d0000b273204ecf96c8fcc16feb19eaf8" alt=""></a>
+                    <h5>Trap capos</h5>
+                </div>
+                <div class="todos-posters">
+                    <a href=""><img src="https://i.scdn.co/image/ab67616d0000b2737b1fc51ff3257b5286a1ecec" alt=""></a>
+                    <h5>Nadie sabe lo que va a pasar mañana</h5>
+                </div>
+                <div class="todos-posters">
+                    <a href=""><img src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt=""></a>
+                    <h5>Genelipsis</h5>
+                </div>
+                <div class="todos-posters">
+                    <a href=""><img src="https://i.scdn.co/image/ab67616d0000b2737574b77268e3d403b6192bd8" alt=""></a>
+                    <h5>Cerrando capitulos</h5>
+                </div>
+                <div class="todos-posters">
+                    <a href=""><img src="https://i.scdn.co/image/ab67616d0000b273d39c826125e85f59e5cbeb5f" alt=""></a>
+                    <h5>PB.DB. The Mixtape</h5>
+                </div>
+                <div class="todos-posters">
+                    <a href=""><img src="https://i.scdn.co/image/ab67616d0000b27335692baca45542527d742d0d" alt=""></a>
+                    <h5>Colores</h5>
+                </div>
+        </div>
+
+    </div>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: 300ms;
+            
+        }
+        body{
+            background-color: rgb(32, 5, 47);
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+        .menu{
+            width: 100%;
+            background-color: rgba(57, 4, 85, 0.483);
+            height: 60px;
+            position: fixed;
+            bottom: 0%;
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+        }
+        .poster-principal, .poster-principal img{
+            width: 99.4%;
+            margin-left: .3%;
+            margin-right: .3%;
+            margin-top: .3%;
+            border-radius: 10px;
+            object-fit: cover;
+            height: 300px;
+
+            
+        }
+        .arriba , .mass{
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+            font-size: 1.5rem;
+            font-family: oswald;
+            font-weight:700;
+            text-decoration: none;
+        }
+        .mass:hover{
+            transform: rotate(-180deg);
+            color: rgb(117, 90, 129);
+        }
+        .albums-favoritos{
+            margin-top: 0.8rem;
+        }
+        .posters{
+            width: 98%;
+            height: 220px;
+            display: flex;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+            margin-left: 2%;
+        }
+        .todos-posters img{
+            width: 10rem;
+            border-radius: .3rem;
+            cursor: pointer;
+        }
+        .todos-posters{
+            text-align: center;
+            color: white;
+            font-family: oswald;
+            margin-right: .3rem;
+        }
+        a, button {
+    -webkit-tap-highlight-color: transparent; /* Safari */
+    tap-highlight-color: transparent; /* Chrome, Firefox, Opera, y otros */
+    outline: none; /* Elimina el borde alrededor del elemento activado */
+  }
+  .todos-posters h5{
+    font-size: .8rem;
+  }
+  .izquierda {
+    margin-left: 1rem;
+    height: 4rem;
+
+  }
+  .izquierda img{
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .centro {
+    height: 4rem;
+
+  }
+  .centro img{
+    height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .derecha {
+    height: 4rem;
+    margin-right: 1rem;
+
+  }
+  .derecha img{
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+    </style>
+</body>
+</html>
