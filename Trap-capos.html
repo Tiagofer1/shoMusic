@@ -144,7 +144,6 @@
             justify-content: space-between;
           z-index: 1;
           transition: 300ms;
-          overflow-y: auto; /* Permite el desplazamiento vertical */
             overscroll-behavior: contain; /* Evita el desplazamiento del body cuando llega al final del menú */
             transition: 300ms; /* Agrega una transición suave al cambiar de tamaño */
             max-height: 60px; /* Altura normal del menú */
@@ -346,21 +345,23 @@ button{
 }
 /* Estilos para la imagen del menú expandido */
 .poster-menu {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     position: absolute;
     z-index: -1;
     display: none; /* Oculta la imagen inicialmente */
     top: 120px; /* Ajusta la posición superior */
+    border: 10px solid #ffffff1a;
+    filter: drop-shadow(2px 4px 6px black);
 }
 .Nombre-cancion{
   font-family: oswald;
-  
   position: absolute;
-  margin-top: 330px;
+  margin-top: 380px;
   color: white;
+  font-size: 1.3rem;
 }
 .opciones-menu{
   display: flex;
