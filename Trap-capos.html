@@ -26,7 +26,9 @@
           <div class="progress-bar"></div>
       </div>          
       <h5 class="tiempo-extendido"></h5>
-
+      <div class="play">
+        <img src="../ShoPlus/Play.png" alt="">
+      </div>
     </div>
     <div class="poster-principal">
         <img class="poster" src="https://i.scdn.co/image/ab67616d00001e02204ecf96c8fcc16feb19eaf8" alt="">
@@ -407,6 +409,21 @@ button{
     font-family: oswald;
     font-size: 1.3rem;
 }
+.play{
+  width: 80px;
+    background: red;
+    height: 80px;
+    position: absolute;
+    margin-top: 600px;
+    border-radius: 100%;
+  cursor: pointer;
+}
+.play img{
+  width: 30px;
+   height: 30px;
+   margin-top: 25px;
+  margin-left: 25px;
+}
     </style>
 <script>
   // Variable global para almacenar el audio actualmente en reproducción
@@ -609,6 +626,33 @@ canciones.forEach(function(cancion, index) {
         cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
         var nombre = this.querySelector('.nombre h5').textContent;
         actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
+    });
+});
+
+// Función para reproducir o pausar el audio según su estado actual
+function toggleReproduccion(audio) {
+    if (audio.paused) {
+        // Si el audio está pausado, reproducirlo
+        audio.play();
+    } else {
+        // Si el audio está reproduciendo, pausarlo
+        audio.pause();
+    }
+}
+
+// Obtener todos los elementos de audio en la página
+var audios = document.querySelectorAll('audio');
+
+// Obtener todos los botones de reproducción en la página
+var botonesPlay = document.querySelectorAll('.play');
+
+// Asociar evento de clic a cada botón de reproducción
+botonesPlay.forEach(function(boton, index) {
+    boton.addEventListener('click', function() {
+        // Obtener el audio correspondiente al botón de reproducción
+        var audio = audios[index];
+        // Reproducir o pausar el audio según su estado actual
+        toggleReproduccion(audio);
     });
 });
 
