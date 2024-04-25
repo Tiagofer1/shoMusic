@@ -8,17 +8,28 @@
     <title>ShoMusic</title>
 </head>
 <body>
-    <div class="menu">
-        <div class="izquierda">
-            <a href="index.html"><img src="https://ia600308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt=""></a>
-        </div>
-        <div class="centro">
-        <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
-        </div>
-        <div class="derecha">
-        <a href=""><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
-        </div>
+  <div class="menu">
+    <div class="opciones-menu">
+      <div class="izquierda">
+          <a href="index.html"><img src="https://ia600308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt=""></a>
+      </div>
+      <div class="centro">
+      <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
+      </div>
+      <div class="derecha">
+      <a href=""><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
+      </div>
     </div>
+      <img src="" alt="" class="poster-menu">
+      <h5 class="Nombre-cancion"></h5>
+      <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>          
+    <h5 class="tiempo-extendido"></h5>
+    <div class="play">
+      <img src="../ShoPlus/Play.png" alt="">
+    </div>
+  </div>
     <div class="poster-principal">
         <img class="poster" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
         <h5 class="titulo">Genelipsis</h5>
@@ -296,6 +307,7 @@
               display: flex;
               justify-content: space-between;
             z-index: 1;
+            transition: 300ms;
             }
           .poster-principal{
               width: 100%;
@@ -479,32 +491,222 @@
     font-size: .6rem;
     color: rgb(218 224 231);
   }
+      /* Estilos para el menú expandido */
+      .menu-expandido {
+      height: 98%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      padding-bottom: 20px;
+      justify-content: center;
+      background: linear-gradient(190deg, rgb(218, 224, 231,.55) 20%, rgb(15, 4, 21,.55) 70%);;
+      max-height: 98%; /* Altura extendida del menú */
+  }
+  /* Estilos para la imagen del menú expandido */
+  .poster-menu {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      position: absolute;
+      z-index: -1;
+      display: none; /* Oculta la imagen inicialmente */
+      top: 120px; /* Ajusta la posición superior */
+      border: 10px solid #ffffff1a;
+      filter: drop-shadow(2px 4px 6px black);
+  }
+  .Nombre-cancion{
+    font-family: oswald;
+    position: absolute;
+    margin-top: 380px;
+    color: white;
+    font-size: 1.3rem;
+  }
+  .opciones-menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;
+    background: rgba(114, 100, 122, 0);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: 1px 4px 20px 1px;
+      transition: 300ms;
+
+  }
+  .progress-bar-container {
+      width: 80%;
+      margin: 20px auto;
+      height: 10px;
+      background-color: rgba(218, 224, 231, 0.2);
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+      position: absolute;
+      margin-top: 450px;
+  }
+  
+  .progress-bar {
+      height: 100%;
+      background-color: rgb(218 224 231);
+      border-radius: 5px;
+      width: 0%;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+  
+  .tiempo-extendido{
+    position: absolute;
+      margin-top: 480px;
+      color: white;
+      font-family: oswald;
+      font-size: 1.3rem;
+  }
+  .play{
+    width: 80px;
+      background: rgb(218 224 231);
+      height: 80px;
+      position: absolute;
+      margin-top: 500px;
+      border-radius: 100%;
+    cursor: pointer;
+  }
+  .play img{
+    width: 30px;
+     height: 30px;
+     margin-top: 25px;
+    margin-left: 25px;
+  }
       </style>
 <script>
   // Variable global para almacenar el audio actualmente en reproducción
-  var audioActual;
+var audioActual;
 
-  // Función para reproducir la canción
-  function reproducirCancion(numeroCancion) {
-      // Pausa la canción actual si hay alguna
-      if (audioActual) {
-          audioActual.pause();
-          audioActual.currentTime = 0; // Reinicia la reproducción al principio
-      }
+// Obtener todas las canciones y asignar eventos de clic dinámicamente
+var canciones = document.querySelectorAll('.canciones-todo');
+canciones.forEach(function(cancion, index) {
+    cancion.addEventListener('click', function() {
+        reproducirCancion(index + 1);
+        cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
+        var nombre = this.querySelector('.nombre h5').textContent;
+        actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
+    });
+});
+var startY; // Variable para almacenar la posición inicial del desplazamiento
+ 
+ // Función para iniciar el desplazamiento manual
+ function startDrag(e) {
+     startY = e.clientY; // Almacena la posición inicial del desplazamiento
+     document.addEventListener('mousemove', dragMenu);
+     document.addEventListener('mouseup', stopDrag);
+ }
+ 
+ // Función para desplazar el menú mientras se arrastra
+ function dragMenu(e) {
+     var menu = document.querySelector('.menu');
+     var delta = e.clientY - startY; // Calcula el cambio en la posición del mouse
+     menu.scrollTop -= delta; // Desplaza el menú en la dirección opuesta al movimiento del mouse
+     startY = e.clientY; // Actualiza la posición inicial del desplazamiento
+ }
+ 
+ // Función para detener el desplazamiento manual
+ function stopDrag() {
+     document.removeEventListener('mousemove', dragMenu);
+     document.removeEventListener('mouseup', stopDrag);
+ }
+ 
+ // Evento para iniciar el desplazamiento manual al hacer clic en el menú
+ document.querySelector('.menu').addEventListener('mousedown', startDrag);
+ 
+ // Función para cambiar entre el menú normal y extendido
+ function toggleMenu() {
+     var menu = document.querySelector('.menu');
+     menu.classList.toggle('menu-expandido'); // Cambia la clase para alternar entre normal y extendido
+ }
+ 
+ // Evento para cambiar entre el menú normal y extendido al hacer doble clic en el menú
+ document.querySelector('.menu').addEventListener('dblclick', toggleMenu);
+ 
+ 
+// Función para reproducir la canción
+function reproducirCancion(numeroCancion) {
+    // Pausa la canción actual si hay alguna
+    if (audioActual) {
+        audioActual.pause();
+        audioActual.currentTime = 0; // Reinicia la reproducción al principio
+    }
 
-      // Reproduce la canción específica
-      var audio = document.getElementById('audio' + numeroCancion);
-      audio.play();
+    // Reproduce la canción específica
+    var audio = document.getElementById('audio' + numeroCancion);
+    audio.play();
 
-      // Actualiza la variable de audio actual
-      audioActual = audio;
-  }
+    // Actualiza la variable de audio actual
+    audioActual = audio;
 
-  // Obtener todas las canciones y asignar eventos de clic dinámicamente
-  var canciones = document.querySelectorAll('.canciones-todo');
-  canciones.forEach(function(cancion, index) {
-      cancion.addEventListener('click', function() {
-          reproducirCancion(index + 1);
-      });
-  });
+    // Evento para manejar el tiempo actualizado del audio
+    audioActual.addEventListener('timeupdate', tiempoActualizado);
+}
+
+// Función para manejar el evento de tiempo actualizado del audio
+function tiempoActualizado() {
+    if (audioActual) {
+        actualizarBarraProgreso(audioActual);
+    }
+}
+
+// Obtener la barra de progreso
+var progressBar = document.querySelector('.progress-bar');
+
+// Función para actualizar la barra de progreso
+function actualizarBarraProgreso(audio) {
+    var porcentaje = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = porcentaje + '%';
+}
+
+// Función para cambiar el estilo del menú al seleccionar una canción
+function cambiarEstiloMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.add('menu-expandido');
+    var posterr = document.querySelector('.poster-cancion');
+
+    // Obtener el poster de la canción seleccionada
+    var poster = document.querySelector('.poster');
+    var posterSrc = poster.src;
+
+    // Crear un elemento de imagen para mostrar el poster en el menú expandido
+    var posterMenu = document.createElement('img');
+    posterMenu.classList.add('poster-menu');
+    posterMenu.src = posterSrc;
+
+  
+
+    // Eliminar cualquier poster anterior en el menú expandido
+    var posterMenuAnterior = document.querySelector('.poster-menu');
+    if (posterMenuAnterior) {
+        posterMenuAnterior.remove();
+    }
+
+    // Agregar el poster de la canción seleccionada al menú expandido
+    menu.appendChild(posterMenu);
+    posterMenu.style.display = 'block'; // Mostrar la imagen
+}
+
+// Función para actualizar el nombre de la canción seleccionada
+function actualizarNombreCancion(nombre) {
+    var nombreCancion = document.querySelector('.Nombre-cancion');
+    nombreCancion.textContent = nombre;
+}
+
+// Función para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+function toggleReproduccion() {
+    if (audioActual.paused) {
+        audioActual.play();
+    } else {
+        audioActual.pause();
+    }
+}
+
+// Evento para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+document.querySelector('.play').addEventListener('click', toggleReproduccion);
+
 </script>
