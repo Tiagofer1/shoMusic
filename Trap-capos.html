@@ -26,9 +26,9 @@
           <div class="progress-bar"></div>
       </div>          
       <h5 class="tiempo-extendido"></h5>
-      <div class="play">
-        <img src="https://archive.org/download/lupa_20240415/Play.png" alt="">
-      </div>
+          <div class="play">
+      <img src="../ShoPlus/Play.png" alt="">
+    </div>
     </div>
     <div class="poster-principal">
         <img class="poster" src="https://i.scdn.co/image/ab67616d00001e02204ecf96c8fcc16feb19eaf8" alt="">
@@ -347,7 +347,7 @@ button{
     border-top-right-radius: 10px;
     padding-bottom: 20px;
     justify-content: center;
-    background: linear-gradient(190deg, rgba(201, 47, 47, 1) 20%, rgb(15 4 21) 70%);;
+    background: linear-gradient(190deg, rgba(201, 47, 47, .55) 20%, rgb(15, 4, 21,.55) 70%);;
     max-height: 98%; /* Altura extendida del menú */
 }
 /* Estilos para la imagen del menú expandido */
@@ -375,10 +375,11 @@ button{
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  background: rgb(15 4 21);
+  background: rgba(15, 4, 21, 0);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 1px 4px 20px 1px;
+    transition: 300ms;
 }
 .progress-bar-container {
     width: 80%;
@@ -409,75 +410,26 @@ button{
     font-family: oswald;
     font-size: 1.3rem;
 }
+
 .play{
-  width: 80px;
-    background: red;
-    height: 80px;
-    position: absolute;
-    margin-top: 600px;
-    border-radius: 100%;
-  cursor: pointer;
-}
-.play img{
-  width: 30px;
-   height: 30px;
-   margin-top: 25px;
-  margin-left: 25px;
-}
+    width: 80px;
+      background: rgba(201, 47, 47, 1);
+      height: 80px;
+      position: absolute;
+      margin-top: 500px;
+      border-radius: 100%;
+    cursor: pointer;
+  }
+  .play img{
+    width: 30px;
+     height: 30px;
+     margin-top: 25px;
+    margin-left: 25px;
+  }
     </style>
 <script>
   // Variable global para almacenar el audio actualmente en reproducción
-  var audioActual;
-
-  // Función para reproducir la canción
-  function reproducirCancion(numeroCancion) {
-      // Pausa la canción actual si hay alguna
-      if (audioActual) {
-          audioActual.pause();
-          audioActual.currentTime = 0; // Reinicia la reproducción al principio
-      }
-
-      // Reproduce la canción específica
-      var audio = document.getElementById('audio' + numeroCancion);
-      audio.play();
-
-      // Actualiza la variable de audio actual
-      audioActual = audio;
-  }
-
-  // Obtener todas las canciones y asignar eventos de clic dinámicamente
-  var canciones = document.querySelectorAll('.canciones-todo');
-  canciones.forEach(function(cancion, index) {
-      cancion.addEventListener('click', function() {
-          reproducirCancion(index + 1);
-      });
-  });
-
-// Función para cambiar el estilo del menú al seleccionar una canción
-function cambiarEstiloMenu() {
-    var menu = document.querySelector('.menu');
-    menu.classList.add('menu-expandido');
-    var posterr = document.querySelector('.poster-cancion')
-
-    // Obtener el poster de la canción seleccionada
-    var poster = document.querySelector('.poster');
-    var posterSrc = poster.src;
-    
-    // Crear un elemento de imagen para mostrar el poster en el menú expandido
-    var posterMenu = document.createElement('img');
-    posterMenu.classList.add('poster-menu');
-    posterMenu.src = posterSrc;
-
-    // Eliminar cualquier poster anterior en el menú expandido
-    var posterMenuAnterior = document.querySelector('.poster-menu');
-    if (posterMenuAnterior) {
-        posterMenuAnterior.remove();
-    }
-
-    // Agregar el poster de la canción seleccionada al menú expandido
-    menu.appendChild(posterMenu);
-    posterMenu.style.display = 'block'; // Mostrar la imagen
-}
+var audioActual;
 
 // Obtener todas las canciones y asignar eventos de clic dinámicamente
 var canciones = document.querySelectorAll('.canciones-todo');
@@ -485,96 +437,46 @@ canciones.forEach(function(cancion, index) {
     cancion.addEventListener('click', function() {
         reproducirCancion(index + 1);
         cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
+        var nombre = this.querySelector('.nombre h5').textContent;
+        actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
     });
 });
-
-    // Función para actualizar el nombre de la canción seleccionada
-    function actualizarNombreCancion(nombre) {
-        var nombreCancion = document.querySelector('.Nombre-cancion');
-        nombreCancion.textContent = nombre;
-    }
-
-    // Obtener todas las canciones y asignar eventos de clic dinámicamente
-    var canciones = document.querySelectorAll('.canciones-todo');
-    canciones.forEach(function(cancion, index) {
-        cancion.addEventListener('click', function() {
-            reproducirCancion(index + 1);
-            cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
-            var nombre = this.querySelector('.nombre h5').textContent;
-            actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
-        });
-    });
-    var startY; // Variable para almacenar la posición inicial del desplazamiento
-
-// Función para iniciar el desplazamiento manual
-function startDrag(e) {
-    startY = e.clientY; // Almacena la posición inicial del desplazamiento
-    document.addEventListener('mousemove', dragMenu);
-    document.addEventListener('mouseup', stopDrag);
-}
-
-// Función para desplazar el menú mientras se arrastra
-function dragMenu(e) {
-    var menu = document.querySelector('.menu');
-    var delta = e.clientY - startY; // Calcula el cambio en la posición del mouse
-    menu.scrollTop -= delta; // Desplaza el menú en la dirección opuesta al movimiento del mouse
-    startY = e.clientY; // Actualiza la posición inicial del desplazamiento
-}
-
-// Función para detener el desplazamiento manual
-function stopDrag() {
-    document.removeEventListener('mousemove', dragMenu);
-    document.removeEventListener('mouseup', stopDrag);
-}
-
-// Evento para iniciar el desplazamiento manual al hacer clic en el menú
-document.querySelector('.menu').addEventListener('mousedown', startDrag);
-
-// Función para cambiar entre el menú normal y extendido
-function toggleMenu() {
-    var menu = document.querySelector('.menu');
-    menu.classList.toggle('menu-expandido'); // Cambia la clase para alternar entre normal y extendido
-}
-
-// Evento para cambiar entre el menú normal y extendido al hacer doble clic en el menú
-document.querySelector('.menu').addEventListener('dblclick', toggleMenu);
-
-// Obtener la barra de progreso
-var progressBar = document.querySelector('.progress-bar');
-
-// Función para actualizar la barra de progreso
-function actualizarBarraProgreso(audio) {
-    var porcentaje = (audio.currentTime / audio.duration) * 100;
-    progressBar.style.width = porcentaje + '%';
-}
-
-// Función para manejar el clic en la barra de progreso
-function clicEnBarraProgreso(event, audio) {
-    var posicionClick = event.clientX - progressBar.getBoundingClientRect().left;
-    var anchoBarra = progressBar.offsetWidth;
-    var porcentaje = (posicionClick / anchoBarra) * 100;
-    var duracionAudio = audio.duration;
-    audio.currentTime = (porcentaje / 100) * duracionAudio;
-}
-
-// Obtener todos los elementos de audio en la página
-var audios = document.querySelectorAll('audio');
-
-// Agregar eventos a cada elemento de audio
-audios.forEach(function(audio) {
-    // Evento para actualizar la barra de progreso mientras se reproduce el audio
-    audio.addEventListener('timeupdate', function() {
-        actualizarBarraProgreso(audio);
-    });
-
-    // Evento para manejar el clic en la barra de progreso
-    progressBar.addEventListener('click', function(event) {
-        clicEnBarraProgreso(event, audio);
-    });
-});
-// Variable global para almacenar el audio actualmente en reproducción
-var audioActual;
-
+var startY; // Variable para almacenar la posición inicial del desplazamiento
+ 
+ // Función para iniciar el desplazamiento manual
+ function startDrag(e) {
+     startY = e.clientY; // Almacena la posición inicial del desplazamiento
+     document.addEventListener('mousemove', dragMenu);
+     document.addEventListener('mouseup', stopDrag);
+ }
+ 
+ // Función para desplazar el menú mientras se arrastra
+ function dragMenu(e) {
+     var menu = document.querySelector('.menu');
+     var delta = e.clientY - startY; // Calcula el cambio en la posición del mouse
+     menu.scrollTop -= delta; // Desplaza el menú en la dirección opuesta al movimiento del mouse
+     startY = e.clientY; // Actualiza la posición inicial del desplazamiento
+ }
+ 
+ // Función para detener el desplazamiento manual
+ function stopDrag() {
+     document.removeEventListener('mousemove', dragMenu);
+     document.removeEventListener('mouseup', stopDrag);
+ }
+ 
+ // Evento para iniciar el desplazamiento manual al hacer clic en el menú
+ document.querySelector('.menu').addEventListener('mousedown', startDrag);
+ 
+ // Función para cambiar entre el menú normal y extendido
+ function toggleMenu() {
+     var menu = document.querySelector('.menu');
+     menu.classList.toggle('menu-expandido'); // Cambia la clase para alternar entre normal y extendido
+ }
+ 
+ // Evento para cambiar entre el menú normal y extendido al hacer doble clic en el menú
+ document.querySelector('.menu').addEventListener('dblclick', toggleMenu);
+ 
+ 
 // Función para reproducir la canción
 function reproducirCancion(numeroCancion) {
     // Pausa la canción actual si hay alguna
@@ -587,73 +489,73 @@ function reproducirCancion(numeroCancion) {
     var audio = document.getElementById('audio' + numeroCancion);
     audio.play();
 
-    // Inicia el cronómetro
-    iniciarCronometro(audio);
-
     // Actualiza la variable de audio actual
     audioActual = audio;
+
+    // Evento para manejar el tiempo actualizado del audio
+    audioActual.addEventListener('timeupdate', tiempoActualizado);
 }
 
-// Función para actualizar el tiempo transcurrido en el cronómetro
-function actualizarTiempoTranscurrido(audio) {
-    // Obtiene el elemento del cronómetro
-    var tiempoExtendido = document.querySelector('.tiempo-extendido');
-
-    // Actualiza el tiempo transcurrido
-    var tiempoTranscurrido = Math.floor(audio.currentTime);
-    var minutos = Math.floor(tiempoTranscurrido / 60);
-    var segundos = tiempoTranscurrido % 60;
-    // Agrega un cero inicial si los segundos son menores que 10
-    segundos = segundos < 10 ? '0' + segundos : segundos;
-
-    // Actualiza el texto del cronómetro
-    tiempoExtendido.textContent = minutos + ':' + segundos;
-}
-
-// Función para iniciar el cronómetro
-function iniciarCronometro(audio) {
-    // Evento para actualizar el cronómetro mientras la canción está en reproducción
-    audio.addEventListener('timeupdate', function() {
-        actualizarTiempoTranscurrido(audio);
-    });
-}
-
-// Obtener todas las canciones y asignar eventos de clic dinámicamente
-var canciones = document.querySelectorAll('.canciones-todo');
-canciones.forEach(function(cancion, index) {
-    cancion.addEventListener('click', function() {
-        reproducirCancion(index + 1);
-        cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
-        var nombre = this.querySelector('.nombre h5').textContent;
-        actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
-    });
-});
-
-// Función para reproducir o pausar el audio según su estado actual
-function toggleReproduccion(audio) {
-    if (audio.paused) {
-        // Si el audio está pausado, reproducirlo
-        audio.play();
-    } else {
-        // Si el audio está reproduciendo, pausarlo
-        audio.pause();
+// Función para manejar el evento de tiempo actualizado del audio
+function tiempoActualizado() {
+    if (audioActual) {
+        actualizarBarraProgreso(audioActual);
     }
 }
 
-// Obtener todos los elementos de audio en la página
-var audios = document.querySelectorAll('audio');
+// Obtener la barra de progreso
+var progressBar = document.querySelector('.progress-bar');
 
-// Obtener todos los botones de reproducción en la página
-var botonesPlay = document.querySelectorAll('.play');
+// Función para actualizar la barra de progreso
+function actualizarBarraProgreso(audio) {
+    var porcentaje = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = porcentaje + '%';
+}
 
-// Asociar evento de clic a cada botón de reproducción
-botonesPlay.forEach(function(boton, index) {
-    boton.addEventListener('click', function() {
-        // Obtener el audio correspondiente al botón de reproducción
-        var audio = audios[index];
-        // Reproducir o pausar el audio según su estado actual
-        toggleReproduccion(audio);
-    });
-});
+// Función para cambiar el estilo del menú al seleccionar una canción
+function cambiarEstiloMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.add('menu-expandido');
+    var posterr = document.querySelector('.poster-cancion');
+
+    // Obtener el poster de la canción seleccionada
+    var poster = document.querySelector('.poster');
+    var posterSrc = poster.src;
+
+    // Crear un elemento de imagen para mostrar el poster en el menú expandido
+    var posterMenu = document.createElement('img');
+    posterMenu.classList.add('poster-menu');
+    posterMenu.src = posterSrc;
+
+  
+
+    // Eliminar cualquier poster anterior en el menú expandido
+    var posterMenuAnterior = document.querySelector('.poster-menu');
+    if (posterMenuAnterior) {
+        posterMenuAnterior.remove();
+    }
+
+    // Agregar el poster de la canción seleccionada al menú expandido
+    menu.appendChild(posterMenu);
+    posterMenu.style.display = 'block'; // Mostrar la imagen
+}
+
+// Función para actualizar el nombre de la canción seleccionada
+function actualizarNombreCancion(nombre) {
+    var nombreCancion = document.querySelector('.Nombre-cancion');
+    nombreCancion.textContent = nombre;
+}
+
+// Función para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+function toggleReproduccion() {
+    if (audioActual.paused) {
+        audioActual.play();
+    } else {
+        audioActual.pause();
+    }
+}
+
+// Evento para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+document.querySelector('.play').addEventListener('click', toggleReproduccion);
 
 </script>
