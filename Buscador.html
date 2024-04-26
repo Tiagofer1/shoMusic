@@ -95,17 +95,18 @@
 .buscador {
     width: 90%;
     margin: 0% 5%;
-    height: 40px;
-    border-radius: 50px;
+    height: 50px;
+    border-radius: 5px;
     border: none;
     text-align: center;
     position: absolute;
     margin-top: 50px;
     font-family: oswald;
     font-size: 1.3rem;
-    background: #6210b429;
+    background: #1c1232;
     backdrop-filter: blur(9px);
     color: white;
+    top: 0;
     outline: none;
 }
   .logo-texto img{
@@ -132,10 +133,10 @@
 
 .posters {
     display: flex;
-    flex-wrap: wrap; /* Change to wrap for images to go down */
+    flex-wrap: wrap;
     justify-content: center;
     font-family: oswald;
-    margin-top: 260px;
+    margin-top: 130px;
 }
 
 .todos-posters {
@@ -175,13 +176,8 @@ img.cantante{
         </div>
     </div>
 
-    <div class="menu-arriba">
-        <div class="logo-texto">
-            <img src="https://ia800308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt="">
-            <h5>ShoPlus</h5>
-        </div>
+
         <input type="text" name="buscador" placeholder="Album,Cantante,Cancion" class="buscador" checked required id="">
-    </div>
 
     <div class="albums-favoritos">
 
