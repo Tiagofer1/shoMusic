@@ -396,6 +396,57 @@ border-radius: 10px;
   position: absolute;
   color: transparent;
 }
+
+.biografia{
+    width: 90%;
+    margin: 0 5% 70px 5%;
+    height: 330px;
+    background: #1a141f;
+border-radius: 20px;
+}
+img.img-biografia {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    object-position: top;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+h5.acerca-artista {
+    position: absolute;
+    font-family: 'Oswald';
+    color: white;
+    margin: 15px;
+    z-index: 2;
+}
+.fondo-oscuro {
+    width: 90%;
+    height: 210px;
+    object-fit: cover;
+    object-position: top;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: absolute;
+    background: linear-gradient(0deg, #1a141f, rgb(15 4 21 / 23%));
+}
+
+h5.biografia-oyentes {
+    color: #b7b6b6;
+    margin: 5px 0 0 10px;
+    font-family: 'Oswald';
+    font-size: .6rem;
+}
+h5.biogtafia-descripcion {
+    margin: 10px;
+    font-family: 'Oswald';
+    color: white;
+    font-size: .8rem;
+}
+h5.biografia-artista {
+    margin: 5px 0 0 10px;
+    color: white;
+    font-family: 'Oswald';
+}
     </style>
   <div class="menu">
     <div class="opciones-menu">
@@ -406,7 +457,7 @@ border-radius: 10px;
       <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
       </div>
       <div class="derecha">
-      <a href="Buscador.html"><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
+      <a href="Buscador.htnl"><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
       </div>
     </div>
       <img src="" alt="" class="poster-menu">
@@ -445,7 +496,7 @@ border-radius: 10px;
             </div>
 
           <div class="todos-posters">
-              <a href="X100pre.html"><img src="https://lastfm.freetls.fastly.net/i/u/ar0/e220bd192e63a48e6fddda59f3fc7662.jpg" alt=""></a>
+              <a href="x100pre.html"><img src="https://lastfm.freetls.fastly.net/i/u/ar0/e220bd192e63a48e6fddda59f3fc7662.jpg" alt=""></a>
               <h5>X100pre</h5>
           </div>
 
@@ -463,6 +514,7 @@ border-radius: 10px;
       </div>
       <div class="tiempo"><h5>TIEMPO</h5></div>
   </div>
+  <div class="todas-canciones">
   <div  class="canciones-todo">
     <img class="poster-chico" src="https://i.scdn.co/image/ab67616d00001e02519266cd05491a5b5bc22d1e" alt="">
       <div class="numero"><h5 class="numero-numero" >Ni Bien Ni Mal</h5></div>
@@ -686,11 +738,12 @@ border-radius: 10px;
 <div class="tiempo">2:45</div>
 </div>
 <div class="canciones-todo">
-  <img class="poster-chico" src="https://archive.org/download/bad-bunny-me-mata/Me%20mata.webp" alt="">
+  <img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/684f58b2323b3208ce8b073837e54b45.jpg#684f58b2323b3208ce8b073837e54b45" alt="">
   <div class="numero"><h5 class="numero-numero" >Me Mata</h5></div>
   <div class="nombre"><h5>Me Mata</h5></div>
   <div class="tiempo">6:52</div>
   </div>
+</div>
 </div>
 
 <div class="canciones">
@@ -731,9 +784,18 @@ border-radius: 10px;
   <audio src="https://archive.org/download/01-nadie-sabe/20%20-%20EUROPA%20_%28.mp3" data-poster="https://i.scdn.co/image/ab67616d0000b2737b1fc51ff3257b5286a1ecec" id="audio35"></audio>
   <audio src="https://archive.org/download/01-nadie-sabe/21%20-%20ACHO%20PR.mp3" data-poster="https://i.scdn.co/image/ab67616d0000b2737b1fc51ff3257b5286a1ecec" id="audio36"></audio>
   <audio src="https://archive.org/download/01-nadie-sabe/22%20-%20UN%20PREVIEW.mp3" data-poster="https://i.scdn.co/image/ab67616d0000b2737b1fc51ff3257b5286a1ecec" id="audio37"></audio>
-  <audio src="https://archive.org/download/bad-bunny-me-mata/Bad%20Bunny%20-%20Me%20Mata.mp3" data-poster="https://archive.org/download/bad-bunny-me-mata/Me%20mata.webp" id="audio38"></audio>
+  <audio src="https://archive.org/download/bad-bunny-me-mata/Bad%20Bunny%20-%20Me%20Mata.mp3" data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/684f58b2323b3208ce8b073837e54b45.jpg#684f58b2323b3208ce8b073837e54b45" id="audio38"></audio>
 <!-- Agrega elementos de audio para todas tus canciones -->
 
+</div>
+
+<div class="biografia">
+  <h5 class="acerca-artista">Acerca del artista</h5>
+  <div class="fondo-oscuro"></div>
+  <img src="https://i.scdn.co/image/ab6761670000ecd4a1b2c9183be1d6f8a05ec448" alt="" class="img-biografia">
+  <h5 class="biografia-artista">Bad Bunny</h5>
+  <h5 class="biografia-oyentes">66.3 M oyentes mensuales</h5>
+  <h5 class="biogtafia-descripcion">Benito Antonio Martínez Ocasio, mejor conocido como Bad Bunny, es un rapero y compositor puertorriqueño de trap, rap y hip-hop en español.</h5>
 </div>
 
 <script>
