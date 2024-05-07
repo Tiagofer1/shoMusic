@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <style>
+                  *{
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              -webkit-tap-highlight-color: transparent; /* Safari */
+      tap-highlight-color: transparent; /* Chrome, Firefox, Opera, y otros */
+      outline: none; /* Elimina el borde alrededor del elemento activado */
+      text-decoration: none;
+          }
+          body{
+              background-color: rgb(15 4 21);
+              font-size: 15px;
+              overflow-x: hidden;
+              font-size: 15px;
+  
+          }
+          .menu{
+              width: 100%;
+              background-color: rgb(15 4 21);
+              height: 60px;
+              position: fixed;
+              bottom: 0%;
+              backdrop-filter: blur(20px);
+              display: flex;
+              justify-content: space-between;
+            z-index: 1;
+            transition: 300ms;
+              overscroll-behavior: contain; /* Evita el desplazamiento del body cuando llega al final del menú */
+              transition: 300ms; /* Agrega una transición suave al cambiar de tamaño */
+              max-height: 60px; /* Altura normal del menú */
+              z-index: 3;
+            }
+
+          .izquierda {
+      margin-left: 1rem;
+      height: 4rem;
+  
+    }
+    .izquierda img{
+      width: 2rem;
+      height: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .centro {
+      height: 4rem;
+  
+    }
+    .centro img{
+      height: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .derecha {
+      height: 4rem;
+      margin-right: 1rem;
+  
+    }
+    .derecha img{
+      width: 2rem;
+      height: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .opciones-menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;
+    background: rgba(15, 4, 21, 0);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: 1px 4px 20px 1px;
+      transition: 300ms;
+
+  }
+  .fondo{
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(180deg, rgba(1,16,36,1) 37%, rgba(15,4,21,1) 100%);  }
+  .img-cantante{
+    width: 210px;
+    height: 210px;
+    margin: 80px 0 0 0;
+    border-radius: 50%;
+    filter: drop-shadow(2px 4px 6px black);
+    border: 10px solid #ffffff0f;
+    object-fit: cover;
+}
+
+  .img-canta{
+    text-align: center;
+    height: 400px;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.024);
+  }
+  .nombre-cantante{
+    color: white;
+    margin: 10px 0 0 0;
+    font-size: 1.3rem;
+    font-family: oswald;
+    font-weight: 500;
+  }
+  .oyentes-scobling {
+    display: flex;
+    width: 100%;
+    color: white;
+    justify-content: center;
+    margin: 20px 0 0 0;
+}
+    
+    h5.oyentes {
+    margin: 0 30px 0 30px;
+    font-family: 'Oswald';
+    font-size: .8rem;
+    color: #b7b6b6;
+}
+span.numero-oyentes {
+    font-size: 1.3rem;
+    color: white;
+
+}
+h5.scobling {
+    font-family: 'Oswald';
+    font-size: .8rem;
+    color: #b7b6b6;
+}
+span.scobling-numero {
+    font-size: 1.3rem;
+    color: white;
+}
+.albums-favoritos {
+    margin-bottom: 70px;
+    color: white;
+}
+
+.posters {
+    display: flex;
+    flex-wrap: wrap; /* Change to wrap for images to go down */
+    justify-content: center;
+    font-family: oswald;
+}
+
+.todos-posters {
+    flex: 0 0 auto;
+    width: 150px;
+    margin: 0 10px; /* Add margin for spacing */
+    text-align: center;
+}
+h5.Albums {
+    margin: 30px 0 10px 10px;
+    color: white;
+    font-size: 1.7rem;
+    font-family: 'Oswald';
+}
+.todos-posters h5 {
+    color: white;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.todos-posters img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;}
+    .buscador-div{
+        width: 95%;
+        height: 40px;
+        margin-top: 40px;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+    .buscador{
+        width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background: #30055475;
+    border: none;
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'Oswald';
+    font-weight: 300;
+    }
+    .todos-posters-2{
+      width: 100%;
+      display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Oswald';
+    }
+    .canciones{
+      width: 70px;
+      margin-right: 10px;
+    border-radius: 10px;
+    }
+    .posters-1 {
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+.menu-expandido {
+height: 98%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-bottom: 20px;
+justify-content: center;
+background: linear-gradient(190deg, rgb(1 16 36) 20%, rgb(1 16 36) 70%);
+max-height: 98%; /* Altura extendida del menú */
+}
+/* Estilos para la imagen del menú expandido */
+.poster-menu {
+width: 250px;
+height: 250px;
+object-fit: cover;
+border-radius: 10px;
+position: absolute;
+z-index: -1;
+display: none; /* Oculta la imagen inicialmente */
+top: 120px; /* Ajusta la posición superior */
+border: 10px solid #ffffff1a;
+filter: drop-shadow(2px 4px 6px black);
+}
+.Nombre-cancion{
+font-family: oswald;
+position: absolute;
+margin-top: 380px;
+color: white;
+font-size: 1.3rem;
+}
+.opciones-menu{
+display: flex;
+justify-content: space-between;
+width: 100%;
+height: 70px;
+background: rgba(114, 100, 122, 0);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+box-shadow: 1px 4px 20px 1px;
+transition: 300ms;
+
+}
+.progress-bar-container {
+width: 80%;
+margin: 20px auto;
+height: 10px;
+background-color: rgba(35, 94, 101, 0.2);
+border-radius: 5px;
+position: relative;
+cursor: pointer;
+position: absolute;
+margin-top: 450px;
+}
+
+.progress-bar {
+height: 100%;
+background-color: #006a76;
+border-radius: 5px;
+width: 0%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.tiempo-extendido{
+position: absolute;
+margin-top: 480px;
+color: white;
+font-family: oswald;
+font-size: 1.3rem;
+}
+.play{
+width: 80px;
+background: #300554;
+height: 80px;
+position: absolute;
+margin-top: 500px;
+border-radius: 100%;
+cursor: pointer;
+}
+.play img{
+width: 30px;
+height: 30px;
+margin-top: 25px;
+margin-left: 25px;
+}
+/* Estilos para la lista de canciones */
+.canciones {
+    width: 100%;
+    background-color: rgb(15 4 21);
+    padding: 8px;
+    overflow-y: auto;
+    font-family: 'Oswald', sans-serif; /* Utiliza la fuente Oswald */
+    color: #fff; /* Color del texto */
+    margin-bottom: 20px;
+}
+
+/* Estilos para cada elemento de la lista de canciones */
+.canciones-todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador entre canciones */
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+  }
+  .canciones-todo:hover{
+    background: linear-gradient(190deg, rgba(37, 99, 106, 0.22) 20%, rgb(15 4 21) 70%);            
+
+  }
+
+/* Estilos para el número de canción */
+.numero {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    border-left: 1px solid white;
+    height: 70px;
+}
+
+/* Estilos para el título de la canción */
+.nombre {
+    flex: 1 1 auto;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden; /* Oculta el exceso de contenido */
+    height: 30px;
+}
+
+/* Estilos para el gradiente de ocultamiento */
+
+
+/* Estilos para el título de la canción */
+.nombre h5 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff; /* Color del texto */
+}
+/* Estilos para el tiempo de la canción */
+.tiempo {
+    flex: 0 0 auto;
+    font-size: .9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: .2rem;
+    font-weight: 500;
+}
+
+
+
+/* Estilos para resaltar el título de la canción */
+.nombre h5 {
+    margin: 0;
+    font-size: 1rem;
+    text-align: left;
+
+}
+
+/* Estilos para resaltar el tiempo de la canción */
+.tiempo h5 {
+    margin: 0;
+    font-size: 0.9rem;
+}
+.nombre-duracion-numero{
+display: flex;
+justify-content: space-between;
+}
+.numero-nombre{
+display: flex;
+margin-left: 99px;
+font-size: 1.3rem;
+}
+.titulos{
+margin-left: 10px;
+}
+.poster-chico{
+width: 80px;
+margin-right: .2rem;
+border-radius: 1px;
+margin-left: .2rem;
+border-radius: 10px;
+}
+.numero-numero{
+  position: absolute;
+  color: transparent;
+}
+.biografia{
+    width: 90%;
+    margin: 0 5% 70px 5%;
+    height: 330px;
+    background: #1a141f;
+border-radius: 20px;
+}
+img.img-biografia {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    object-position: top;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+h5.acerca-artista {
+    position: absolute;
+    font-family: 'Oswald';
+    color: white;
+    margin: 15px;
+    z-index: 2;
+}
+.fondo-oscuro {
+    width: 90%;
+    height: 210px;
+    object-fit: cover;
+    object-position: top;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: absolute;
+    background: linear-gradient(0deg, #1a141f, rgb(15 4 21 / 23%));
+}
+
+h5.biografia-oyentes {
+    color: #b7b6b6;
+    margin: 5px 0 0 10px;
+    font-family: 'Oswald';
+    font-size: .6rem;
+}
+h5.biogtafia-descripcion {
+    margin: 10px;
+    font-family: 'Oswald';
+    color: white;
+    font-size: .8rem;
+}
+h5.biografia-artista {
+    margin: 5px 0 0 10px;
+    color: white;
+    font-family: 'Oswald';
+}
+    </style>
+  <div class="menu">
+    <div class="opciones-menu">
+      <div class="izquierda">
+          <a href="index.html"><img src="https://ia600308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt=""></a>
+      </div>
+      <div class="centro">
+      <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
+      </div>
+      <div class="derecha">
+      <a href="Buscador.html"><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
+      </div>
+    </div>
+      <img src="" alt="" class="poster-menu">
+      <h5 class="Nombre-cancion"></h5>
+      <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>          
+    <h5 class="tiempo-extendido"></h5>
+    <div class="play">
+      <img src="https://archive.org/download/lupa_20240415/Play.png" alt="">
+    </div>
+  </div>
+
+      <div class="fondo">
+        <div class="img-canta">
+        <img class="img-cantante" src="https://lastfm.freetls.fastly.net/i/u/770x0/d0c4ceaa3f58382a7d8223f159b8b8a1.jpg#d0c4ceaa3f58382a7d8223f159b8b8a1" alt="">
+            <h5 class="nombre-cantante">MORA</h5>
+            <div class="oyentes-scobling">
+                <h5 class="oyentes">Oyentes <span class="numero-oyentes">20M</span></h5>
+                <h5 class="scobling">Scrobblings <span class="scobling-numero">20,1M</span></h5>
+            </div>
+    </div>
+      </div>
+      
+      <div class="buscador-div">
+        <input type="text" name="buscador" placeholder="Cancion, Album" class="buscador" checked required id="">
+      </div>
+      <h5 class="Albums">Albums</h5>
+
+      <div class="albums-favoritos">
+        <div class="posters">
+            <div class="todos-posters">
+                <a href="Microdosis.html"><img src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="Microdosis"></a>
+                <h5>Microdosis</h5>
+            </div>
+            
+    </div>
+
+</div>
+
+<h5 class="Albums">Canciones</h5>
+
+<div class="canciones">
+  <div class="nombre-duracion-numero">
+      <div class="numero-nombre">
+          <h5>#</h5>
+          <h5 class="titulos">TITULO</h5>
+      </div>
+      <div class="tiempo"><h5>TIEMPO</h5></div>
+  </div>
+  <div  class="canciones-todo">
+    <img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+      <div class="numero"><h5 class="numero-numero" >Bad Trip: (</h5></div>
+      <div class="nombre"><h5>Bad Trip: (</h5></div>
+      <div class="tiempo">3:11</div>
+  </div>
+  <div  class="canciones-todo">
+    <img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+    <div class="numero"><h5 class="numero-numero" >2010</h5></div>
+    <div class="nombre"><h5>2010</h5></div>
+    <div class="tiempo">2:51</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+  <div class="numero"><h5 class="numero-numero" >Memorias</h5></div>
+  <div class="nombre"><h5>Memorias</h5></div>
+  <div class="tiempo">3:49</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Robert De Niro</h5></div>
+<div class="nombre"><h5>Robert De Niro</h5></div>
+<div class="tiempo">2:54</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Pecado</h5></div>
+<div class="nombre"><h5>Pecado</h5></div>
+<div class="tiempo">2:51</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero">Lindor</h5></div>
+<div class="nombre"><h5>Lindor</h5></div>
+<div class="tiempo">2:24</div>
+</div>
+
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Tus Lagrimas</h5></div>
+<div class="nombre"><h5>Tus Lagrimas</h5></div>
+<div class="tiempo">2:54</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Escalofrios</h5></div>
+<div class="nombre"><h5>Escalofrios</h5></div>
+<div class="tiempo">2:18</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Playa Privada</h5></div>
+<div class="nombre"><h5>Playa Privada</h5></div>
+<div class="tiempo">2:37</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Lejos De Ti</h5></div>
+<div class="nombre"><h5>Lejos De Ti</h5></div>
+<div class="tiempo">2:08</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Quieren Ser Yo</h5></div>
+<div class="nombre"><h5>Quieren Ser Yo</h5></div>
+<div class="tiempo">3:39</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Tu Amigo</h5></div>
+<div class="nombre"><h5>Tu Amigo</h5></div>
+<div class="tiempo">2:53</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Oro Rosado</h5></div>
+<div class="nombre"><h5>Oro Rosado</h5></div>
+<div class="tiempo">2:34</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >La Inocente</h5></div>
+<div class="nombre"><h5>La Inocente</h5></div>
+<div class="tiempo">3:22</div>
+</div>
+<div class="canciones-todo">
+<img class="poster-chico" src="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" alt="">
+<div class="numero"><h5 class="numero-numero" >Ojos Colorau</h5></div>
+<div class="nombre"><h5>Ojos Colorau</h5></div>
+<div class="tiempo">3:41</div>
+</div>
+</div>
+
+<div class="canciones">
+    <audio  src="https://archive.org/download/03-memorias/01%20-%20badtrip%20_%28.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b"  id="audio1"></audio>
+    <audio  src="https://archive.org/download/03-memorias/02%20-%202010.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio2"></audio>
+    <audio  src="https://archive.org/download/03-memorias/03%20-%20MEMORIAS.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio3"></audio>
+    <audio src="https://archive.org/download/03-memorias/04%20-%20ROBERT%20DE%20NIRO.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio4"></audio>
+    <audio src="https://archive.org/download/03-memorias/05%20-%20PECADO.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio5"></audio>
+    <audio src="https://archive.org/download/03-memorias/06%20-%20LINDOR.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio6"></audio>
+    <audio src="https://archive.org/download/03-memorias/07%20-%20TUS%20L%C3%81GRIMAS.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio7"></audio>
+    <audio src="https://archive.org/download/03-memorias/08%20-%20ESCALOFR%C3%8DOS.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio8"></audio>
+    <audio src="https://archive.org/download/03-memorias/09%20-%20PLAYA%20PRIVADA.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio9"></audio>
+    <audio src="https://archive.org/download/03-memorias/10%20-%20LEJOS%20DE%20TI.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio10"></audio>
+    <audio src="https://archive.org/download/03-memorias/11%20-%20QSY.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio11"></audio>
+    <audio src="https://archive.org/download/03-memorias/12%20-%20TU%20AMIGO.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio12"></audio>
+    <audio src="https://archive.org/download/03-memorias/13%20-%20ORO%20ROSADO.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio13"></audio>
+    <audio src="https://archive.org/download/03-memorias/14%20-%20LA%20INOCENTE.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio14"></audio>
+    <audio src="https://archive.org/download/03-memorias/15%20-%20OJOS%20COLORAU.mp3"data-poster="https://lastfm.freetls.fastly.net/i/u/770x0/8fd1aa71dd8489fb524d4bee3dc57a3b.jpg#8fd1aa71dd8489fb524d4bee3dc57a3b" id="audio15"></audio>
+
+<!-- Agrega elementos de audio para todas tus canciones -->
+
+  </div>
+
+<div class="biografia">
+  <h5 class="acerca-artista">Acerca del artista</h5>
+  <div class="fondo-oscuro"></div>
+  <img src="https://lastfm.freetls.fastly.net/i/u/770x0/850bfedc11ee2e5f3cfb629dcf08c7fe.jpg#850bfedc11ee2e5f3cfb629dcf08c7fe" alt="" class="img-biografia">
+  <h5 class="biografia-artista">Mora</h5>
+  <h5 class="biografia-oyentes">20 M oyentes mensuales</h5>
+  <h5 class="biogtafia-descripcion"> Gabriel Armando Mora Quintero, más conocido como Mora o "La fruta infiel", es un cantante, productor y compositor puertorriqueño de Reggaeton.</h5>
+</div>
+
+<script>
+  document.querySelector('.buscador').addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      const posters = document.querySelectorAll('.todos-posters');
+
+      posters.forEach(function(poster) {
+          const title = poster.querySelector('h5').innerText.toLowerCase();
+          if (title.indexOf(term) != -1) {
+              poster.style.display = 'block';
+          } else {
+              poster.style.display = 'none';
+          }
+      });
+  });
+
+  document.querySelector('.buscador').addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      const posters = document.querySelectorAll('.canciones-todo');
+
+      posters.forEach(function(poster) {
+          const title = poster.querySelector('h5').innerText.toLowerCase();
+          if (title.indexOf(term) != -1) {
+              poster.style.display = 'flex';
+          } else {
+              poster.style.display = 'none';
+          }
+      });
+  });
+
+  // Variable global para almacenar el audio actualmente en reproducción
+  var audioActual;
+
+  // Obtener todas las canciones y asignar eventos de clic dinámicamente
+  var canciones = document.querySelectorAll('.canciones-todo');
+  canciones.forEach(function(cancion, index) {
+      cancion.addEventListener('click', function() {
+          reproducirCancion(index + 1);
+          cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
+          var nombre = this.querySelector('.nombre h5').textContent;
+          actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
+      });
+  });
+
+  var startY; // Variable para almacenar la posición inicial del desplazamiento
+
+  // Función para iniciar el desplazamiento manual
+  function startDrag(e) {
+      startY = e.clientY; // Almacena la posición inicial del desplazamiento
+      document.addEventListener('mousemove', dragMenu);
+      document.addEventListener('mouseup', stopDrag);
+  }
+
+  // Función para desplazar el menú mientras se arrastra
+  function dragMenu(e) {
+      var menu = document.querySelector('.menu');
+      var delta = e.clientY - startY; // Calcula el cambio en la posición del mouse
+      menu.scrollTop -= delta; // Desplaza el menú en la dirección opuesta al movimiento del mouse
+      startY = e.clientY; // Actualiza la posición inicial del desplazamiento
+  }
+
+  // Función para detener el desplazamiento manual
+  function stopDrag() {
+      document.removeEventListener('mousemove', dragMenu);
+      document.removeEventListener('mouseup', stopDrag);
+  }
+
+  // Evento para iniciar el desplazamiento manual al hacer clic en el menú
+  document.querySelector('.menu').addEventListener('mousedown', startDrag);
+
+  // Función para cambiar entre el menú normal y extendido
+  function toggleMenu() {
+      var menu = document.querySelector('.menu');
+      menu.classList.toggle('menu-expandido'); // Cambia la clase para alternar entre normal y extendido
+  }
+
+  // Evento para cambiar entre el menú normal y extendido al hacer doble clic en el menú
+  document.querySelector('.menu').addEventListener('dblclick', toggleMenu);
+
+  // Función para reproducir la canción
+  function reproducirCancion(numeroCancion) {
+      // Pausa la canción actual si hay alguna
+      if (audioActual) {
+          audioActual.pause();
+          audioActual.currentTime = 0; // Reinicia la reproducción al principio
+      }
+
+      // Reproduce la canción específica
+      var audio = document.getElementById('audio' + numeroCancion);
+      audio.play();
+
+      // Actualiza la variable de audio actual
+      audioActual = audio;
+
+      // Guarda el póster de la canción seleccionada
+      var poster = document.querySelector('#audio' + numeroCancion).getAttribute('data-poster');
+      sessionStorage.setItem('currentPoster', poster);
+
+      // Evento para manejar el tiempo actualizado del audio
+      audioActual.addEventListener('timeupdate', tiempoActualizado);
+  }
+
+  // Función para manejar el evento de tiempo actualizado del audio
+  function tiempoActualizado() {
+      if (audioActual) {
+          actualizarBarraProgreso(audioActual);
+      }
+  }
+
+  // Obtener la barra de progreso
+  var progressBar = document.querySelector('.progress-bar');
+
+  // Función para actualizar la barra de progreso
+  function actualizarBarraProgreso(audio) {
+      var porcentaje = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = porcentaje + '%';
+  }
+
+  // Función para cambiar el estilo del menú al seleccionar una canción
+  function cambiarEstiloMenu() {
+      var menu = document.querySelector('.menu');
+      menu.classList.add('menu-expandido');
+
+      // Obtener el poster de la canción seleccionada
+      var posterSrc = sessionStorage.getItem('currentPoster');
+
+      // Crear un elemento de imagen para mostrar el poster en el menú expandido
+      var posterMenu = document.createElement('img');
+      posterMenu.classList.add('poster-menu');
+      posterMenu.src = posterSrc;
+
+      // Eliminar cualquier poster anterior en el menú expandido
+      var posterMenuAnterior = document.querySelector('.poster-menu');
+      if (posterMenuAnterior) {
+          posterMenuAnterior.remove();
+      }
+
+      // Agregar el poster de la canción seleccionada al menú expandido
+      menu.appendChild(posterMenu);
+      posterMenu.style.display = 'block'; // Mostrar la imagen
+  }
+
+  // Función para actualizar el nombre de la canción seleccionada
+  function actualizarNombreCancion(nombre) {
+      var nombreCancion = document.querySelector('.Nombre-cancion');
+      nombreCancion.textContent = nombre;
+  }
+
+  // Función para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+  function toggleReproduccion() {
+      if (audioActual.paused) {
+          audioActual.play();
+      } else {
+          audioActual.pause();
+      }
+  }
+
+  // Evento para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+  document.querySelector('.play').addEventListener('click', toggleReproduccion);
+</script>
+
+</body>
+</html>
