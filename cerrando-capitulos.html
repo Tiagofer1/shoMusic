@@ -252,7 +252,7 @@ overflow: auto;
 .Nombre-cancion {
     font-family: oswald;
     position: absolute;
-    margin-top: 490px;
+    margin-top: 475px;
     color: white;
     font-size: 1.8rem;
     font-variant: all-small-caps;
@@ -291,20 +291,20 @@ left: 0;
 }
 
 
-.play {
-    width: 80px;
-    background: #006a7600;
-    height: 80px;
-    position: absolute;
-    margin-top: 575px;
-    border-radius: 100%;
-    cursor: pointer;
+.play{
+width: 80px;
+background: rgba(218, 224, 231, 0);
+height: 80px;
+position: absolute;
+margin-top: 575px;
+border-radius: 100%;
+cursor: pointer;
 }
 .play img{
-width: 30px;
-height: 30px;
-margin-top: 25px;
-margin-left: 25px;
+width:40px;
+height: 40px;
+margin-top: 20px;
+margin-left: 20px;
 }
 .biografia{
     width: 90%;
@@ -364,6 +364,14 @@ h5.biografia-artista {
     position: absolute;
     margin-top: 1000px;
 }
+.Cantante {
+    font-family: 'Oswald';
+    position: absolute;
+    margin-top: 514px;
+    color: #959595;
+    font-size: .8rem;
+    font-variant: all-small-caps;
+}
 </style>
   <div class="menu">
     <div class="opciones-menu">
@@ -379,12 +387,15 @@ h5.biografia-artista {
     </div>
       <img src="" alt="" class="poster-menu">
       <h5 class="Nombre-cancion"></h5>
+      <h5 class="Cantante">Noriel</h5>
       <div class="progress-bar-container">
         <div class="progress-bar"></div>
-    </div>          
+        
+    </div>     
     <div class="play">
-      <img src="https://archive.org/download/lupa_20240415/Play.png" alt="">
-    </div>
+        <img src="https://archive.org/download/lupa_20240415/Play.png" alt="">
+      </div>     
+
     <div class="biografia">
         <h5 class="acerca-artista">Acerca del artista</h5>
         <div class="fondo-oscuro"></div>
@@ -616,4 +627,14 @@ function toggleReproduccion() {
 // Evento para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
 document.querySelector('.play').addEventListener('click', toggleReproduccion);
 
+    // Función para cambiar entre las imágenes de pausa y reproducción
+    function togglePlay() {
+            // Obtiene las imágenes de pausa y reproducción
+            var pausa = document.querySelector('.pausa-pausa');
+            var play = document.querySelector('.play-play');
+
+            // Alterna las clases para cambiar las imágenes
+            pausa.classList.toggle('visible');
+            play.classList.toggle('visible');
+        }
 </script>
