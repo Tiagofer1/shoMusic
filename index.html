@@ -194,35 +194,35 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-}
-
-h1 {
-    margin: 0;
-}
-
-.manga-viewer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
-}
-
-
-.manga-viewer{
-width: 100%;
-border-radius: 5px;
-}
-
+            justify-content: center;
+            align-items: center;
+        }
+        #manga-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        .manga-viewer {
+            width: 100%;
+            display: block;
+            margin: auto;
+            max-width: 869px;
+            border-radius: 20px;
+        }
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .navigation button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: var(--color-primario);
+    border: none;
+    margin: 5px 5px 0px;
+    border-radius: 10px;
+        }
     </style>
 <div class="flecha-salir">
     <a href="inicio.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
@@ -826,10 +826,13 @@ border-radius: 5px;
         <div id="T2" class="tab-content">
 
             <div class="container">
-
                 <main id="manga-container">
-
+                    <!-- Manga images will be inserted here -->
                 </main>
+                <div class="navigation">
+                    <button id="prevPage">Anterior</button>
+                    <button id="nextPage">Siguiente</button>
+                </div>
             </div>
 
             
@@ -861,16 +864,35 @@ border-radius: 5px;
         });
         
         const totalPages = 87;
-const baseUrl = "https://archive.org/download/tomo-01-son-goku-y-sus-amigos-pages-to-jpg-0086/tomo%2001%20-%20son%20goku%20y%20sus%20amigos_pages-to-jpg-00";
-const container = document.getElementById('manga-container');
+        const baseUrl = "https://archive.org/download/tomo-01-son-goku-y-sus-amigos-pages-to-jpg-0086/tomo%2001%20-%20son%20goku%20y%20sus%20amigos_pages-to-jpg-00";
+        const container = document.getElementById('manga-container');
+        let currentPage = 1;
 
-for (let i = 1; i <= totalPages; i++) {
-    const img = document.createElement('img');
-    img.src = `${baseUrl}${String(i).padStart(2, '0')}.jpg`;
-    img.alt = `Manga Page ${i}`;
-    img.className = 'manga-viewer';
-    container.appendChild(img);
-}
+        function loadPage(pageNumber) {
+            container.innerHTML = ''; // Clear current images
+            const img = document.createElement('img');
+            img.src = `${baseUrl}${String(pageNumber).padStart(2, '0')}.jpg`;
+            img.alt = `Manga Page ${pageNumber}`;
+            img.className = 'manga-viewer';
+            container.appendChild(img);
+        }
+
+        document.getElementById('prevPage').addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadPage(currentPage);
+            }
+        });
+
+        // Load the first page initially
+        loadPage(currentPage);
 
     </script>
 
