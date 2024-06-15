@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>ShoMusic</title>
+</head>
+<body>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent; /* Safari */
+tap-highlight-color: transparent; /* Chrome, Firefox, Opera, y otros */
+outline: none; /* Elimina el borde alrededor del elemento activado */
+text-decoration: none;
+    }
+    body{
+        background-color: rgb(15 4 21);
+        font-size: 15px;
+        overflow-x: hidden;
+        font-size: 15px;
+
+    }
+    .menu{
+        width: 100%;
+        background-color: rgb(15 4 21);
+        height: 60px;
+        position: fixed;
+        bottom: 0%;
+        backdrop-filter: blur(20px);
+        display: flex;
+        justify-content: space-between;
+      z-index: 1;
+      transition: 300ms;
+      }
+    .poster-principal{
+        width: 100%;
+        object-fit: cover;
+        text-align: center;
+        height: 400px;
+        background: rgb(201,47,47);
+background: linear-gradient(190deg, rgb(218 224 231) 20%, rgb(15 4 21) 70%);            
+    }
+    .izquierda {
+margin-left: 1rem;
+height: 4rem;
+
+}
+.izquierda img{
+width: 2rem;
+height: 2rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+.centro {
+height: 4rem;
+
+}
+.centro img{
+height: 2rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+.derecha {
+height: 4rem;
+margin-right: 1rem;
+
+}
+.derecha img{
+width: 2rem;
+height: 2rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+.poster{
+width: 14rem;
+margin-top: 2rem;
+border-radius: .5rem;
+border: 10px solid #ffffff17;
+filter: drop-shadow(2px 4px 6px black);
+}
+.titulo{
+font-family: oswald;
+color: white;
+font-size: 1.5rem;
+}
+.cantante{
+color: rgb(173, 172, 174);
+font-family: oswald;
+font-size: .6rem;
+margin-top: .1rem;
+text-decoration:underline;
+display: inline;
+
+}
+.cantante:hover{
+color: white;
+}
+
+/* Estilos para la lista de canciones */
+.canciones {
+    width: 100%;
+    background-color: rgb(15 4 21);
+    padding: 8px;
+    overflow-y: auto;
+    font-family: 'Oswald', sans-serif; /* Utiliza la fuente Oswald */
+    color: #fff; /* Color del texto */
+    margin-bottom: 20px;
+}
+
+/* Estilos para cada elemento de la lista de canciones */
+.canciones-todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador entre canciones */
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  cursor: pointer;
+  }
+.canciones-todo:hover{
+background: linear-gradient(190deg, rgb(201 206 212 / 22%) 20%, rgb(15 4 21) 70%);}
+
+/* Estilos para el número de canción */
+.numero {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    border-left: 1px solid white;
+    height: 70px;
+}
+
+/* Estilos para el título de la canción */
+.nombre {
+    flex: 1 1 auto;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden; /* Oculta el exceso de contenido */
+    height: 30px;
+}
+
+/* Estilos para el gradiente de ocultamiento */
+
+
+/* Estilos para el título de la canción */
+.nombre h5 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff; /* Color del texto */
+    text-align: left;
+}
+/* Estilos para el tiempo de la canción */
+.tiempo {
+    flex: 0 0 auto;
+    font-size: .9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: .2rem;
+    font-weight: 500;
+}
+
+
+
+/* Estilos para resaltar el título de la canción */
+.nombre h5 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Estilos para resaltar el tiempo de la canción */
+.tiempo h5 {
+    margin: 0;
+    font-size: 0.9rem;
+}
+.nombre-duracion-numero{
+display: flex;
+justify-content: space-between;
+}
+.numero-nombre{
+display: flex;
+margin-left: 99px;
+font-size: 1.3rem;
+}
+.titulos{
+margin-left: 10px;
+}
+.poster-chico{
+width: 80px;
+margin-right: .2rem;
+border-radius: 1px;
+margin-left: .2rem;
+border-radius: 10px;
+}
+.numero-numero{
+margin-left: 10px;
+}
+button{
+margin-top: 10px;
+height: 30px;
+width: 200px;
+font-family: oswald;
+font-size: 1rem;
+background: rgb(218 224 231);
+border: none;
+color: white;
+border-radius: 20px;
+font-weight: 600;
+}
+.Año{
+margin-left: 10px;
+font-family: oswald;
+font-weight: 900;
+font-size: .6rem;
+color: rgb(218 224 231);
+}
+/* Estilos para el menú expandido */
+.menu-expandido {
+height: 98%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-bottom: 20px;
+justify-content: center;
+background: linear-gradient(190deg, rgb(218, 224, 231,.55) 20%, rgb(15, 4, 21,.55) 70%);;
+max-height: 98%; /* Altura extendida del menú */
+}
+/* Estilos para la imagen del menú expandido */
+.poster-menu {
+width: 250px;
+height: 250px;
+object-fit: cover;
+border-radius: 10px;
+position: absolute;
+z-index: -1;
+display: none; /* Oculta la imagen inicialmente */
+top: 120px; /* Ajusta la posición superior */
+border: 10px solid #ffffff1a;
+filter: drop-shadow(2px 4px 6px black);
+}
+.Nombre-cancion{
+font-family: oswald;
+position: absolute;
+margin-top: 380px;
+color: white;
+font-size: 1.3rem;
+}
+.opciones-menu{
+display: flex;
+justify-content: space-between;
+width: 100%;
+height: 70px;
+background: rgba(114, 100, 122, 0);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+box-shadow: 1px 4px 20px 1px;
+transition: 300ms;
+
+}
+.progress-bar-container {
+width: 80%;
+margin: 20px auto;
+height: 10px;
+background-color: rgba(218, 224, 231, 0.2);
+border-radius: 5px;
+position: relative;
+cursor: pointer;
+position: absolute;
+margin-top: 450px;
+}
+
+.progress-bar {
+height: 100%;
+background-color: rgb(218 224 231);
+border-radius: 5px;
+width: 0%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.tiempo-extendido{
+position: absolute;
+margin-top: 480px;
+color: white;
+font-family: oswald;
+font-size: 1.3rem;
+}
+.play{
+width: 80px;
+background: rgb(218 224 231);
+height: 80px;
+position: absolute;
+margin-top: 500px;
+border-radius: 100%;
+cursor: pointer;
+}
+.play img{
+width: 30px;
+height: 30px;
+margin-top: 25px;
+margin-left: 25px;
+}
+</style>
+  <div class="menu">
+    <div class="opciones-menu">
+      <div class="izquierda">
+          <a href="index.html"><img src="https://ia600308.us.archive.org/14/items/lupa_20240415/shotienda-logo.png" alt=""></a>
+      </div>
+      <div class="centro">
+      <a href=""><img src="https://archive.org/download/lupa_20240415/Explorar.png" alt=""></a>
+      </div>
+      <div class="derecha">
+      <a href=""><img src="https://archive.org/download/lupa_20240415/Lupa.png" alt=""></a>
+      </div>
+    </div>
+      <img src="" alt="" class="poster-menu">
+      <h5 class="Nombre-cancion"></h5>
+      <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>          
+    <h5 class="tiempo-extendido"></h5>
+    <div class="play">
+      <img src="https://archive.org/download/lupa_20240415/Play.png" alt="">
+    </div>
+  </div>
+    <div class="poster-principal">
+        <img class="poster" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+        <h5 class="titulo">Genelipsis</h5>
+        <a href="Almighty.html"><h5 class="cantante">ALMIGHTY</h5><span class="Año">•2022</span></a>
+        <div>        <a href="https://archive.org/compress/06-cerrando-capitulo/formats=VBR%20MP3&file=/06-cerrando-capitulo.zip"><button>DESCARGAR</button></a>
+        </div>
+    </div>
+
+        <div class="canciones">
+            <div class="nombre-duracion-numero">
+                <div class="numero-nombre">
+                    <h5>#</h5>
+                    <h5 class="titulos">TITULO</h5>
+                </div>
+                <div class="tiempo"><h5>TIEMPO</h5></div>
+            </div>
+            <div  class="canciones-todo">
+              <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+                <div class="numero"><h5 class="numero-numero" >1</h5></div>
+                <div class="nombre"><h5>Dios Es Primero</h5></div>
+                <div class="tiempo">3:18</div>
+            </div>
+            <div  class="canciones-todo">
+              <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+              <div class="numero"><h5 class="numero-numero" >2</h5></div>
+              <div class="nombre"><h5>Justo Juez</h5></div>
+              <div class="tiempo">3:31</div>
+          </div>
+          <div class="canciones-todo">
+            <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+            <div class="numero"><h5 class="numero-numero" >3</h5></div>
+            <div class="nombre"><h5>Chikopokopo</h5></div>
+            <div class="tiempo">3:39</div>
+        </div>
+        <div class="canciones-todo">
+          <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+          <div class="numero"><h5 class="numero-numero" >4</h5></div>
+          <div class="nombre"><h5>Trabajar Pa'l Cielo</h5></div>
+          <div class="tiempo">3:48</div>
+      </div>
+      <div class="canciones-todo">
+        <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+        <div class="numero"><h5 class="numero-numero" >5</h5></div>
+        <div class="nombre"><h5>Sacrificio</h5></div>
+        <div class="tiempo">2:56</div>
+    </div>
+    <div class="canciones-todo">
+      <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+      <div class="numero"><h5 class="numero-numero">6</h5></div>
+      <div class="nombre"><h5>No Me Arrodillo</h5></div>
+      <div class="tiempo">3:45</div>
+  </div>
+  <div class="canciones-todo">
+    <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+    <div class="numero"><h5 class="numero-numero" >7</h5></div>
+    <div class="nombre"><h5>Idonea</h5></div>
+    <div class="tiempo">3:29</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >8</h5></div>
+  <div class="nombre"><h5>Tire La Piedra</h5></div>
+  <div class="tiempo">3:47</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >9</h5></div>
+  <div class="nombre"><h5>Espiritu Santo</h5></div>
+  <div class="tiempo">3:52</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >10</h5></div>
+  <div class="nombre"><h5>  Lazaro</h5></div>
+  <div class="tiempo">3:36</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >11</h5></div>
+  <div class="nombre"><h5>Salvame</h5></div>
+  <div class="tiempo">3:00</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >12</h5></div>
+  <div class="nombre"><h5>Yiye Avila</h5></div>
+  <div class="tiempo">2:37</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >13</h5></div>
+  <div class="nombre"><h5>Lampara</h5></div>
+  <div class="tiempo">4:43</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >14</h5></div>
+  <div class="nombre"><h5>Me Quieren Matar</h5></div>
+  <div class="tiempo">3:08</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >15</h5></div>
+  <div class="nombre"><h5>El Siervo</h5></div>
+  <div class="tiempo">2:47</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >16</h5></div>
+  <div class="nombre"><h5>Corona</h5></div>
+  <div class="tiempo">3:22</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >17</h5></div>
+  <div class="nombre"><h5>Tu Amor</h5></div>
+  <div class="tiempo">3:42</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >18</h5></div>
+  <div class="nombre"><h5>Maria</h5></div>
+  <div class="tiempo">3:15</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >19</h5></div>
+  <div class="nombre"><h5>Hambre</h5></div>
+  <div class="tiempo">3:37</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >20</h5></div>
+  <div class="nombre"><h5>Cristo Conmigo</h5></div>
+  <div class="tiempo">3:14</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >21</h5></div>
+  <div class="nombre"><h5>Al CIelo Fue</h5></div>
+  <div class="tiempo">3:30</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >22</h5></div>
+  <div class="nombre"><h5>La Salvacion</h5></div>
+  <div class="tiempo">3:24</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >23</h5></div>
+  <div class="nombre"><h5>>Fiesta</h5></div>
+  <div class="tiempo">3:17</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >24</h5></div>
+  <div class="nombre"><h5>Bruto</h5></div>
+  <div class="tiempo">3:33</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >25</h5></div>
+  <div class="nombre"><h5>Sangre De Cristo</h5></div>
+  <div class="tiempo">3:04</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >26</h5></div>
+  <div class="nombre"><h5>Sentencia</h5></div>
+  <div class="tiempo">3:20</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >27</h5></div>
+  <div class="nombre"><h5>Todos Los Mejoras</h5></div>
+  <div class="tiempo">3:24</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >28</h5></div>
+  <div class="nombre"><h5>Secretos</h5></div>
+  <div class="tiempo">3:14</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >29</h5></div>
+  <div class="nombre"><h5>Rapto</h5></div>
+  <div class="tiempo">3:43</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >30</h5></div>
+  <div class="nombre"><h5>Velo</h5></div>
+  <div class="tiempo">3:00</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >31</h5></div>
+  <div class="nombre"><h5>PEntre El Bien Y El Mal</h5></div>
+  <div class="tiempo">3:32</div>
+</div>
+<div class="canciones-todo">
+  <img class="poster-chico" src="https://i.scdn.co/image/ab67616d0000b2731f9bf78f3edbe32ab519e182" alt="">
+  <div class="numero"><h5 class="numero-numero" >32</h5></div>
+  <div class="nombre"><h5>Pongase Serio</h5></div>
+  <div class="tiempo">3:26</div>
+</div>
+
+        </div>
+
+        <div class="canciones">
+          <audio  src="https://archive.org/download/13-lampara/01%20-%20Dios%20Es%20Primero.mp3" id="audio1"></audio>
+          <audio  src="https://archive.org/download/13-lampara/02%20-%20Justo%20Juez.mp3" id="audio2"></audio>
+          <audio  src="https://archive.org/download/13-lampara/03%20-%20Chikopokopo.mp3" id="audio3"></audio>
+          <audio src="https://archive.org/download/13-lampara/04%20-%20Trabajar%20Pa%27l%20Cielo.mp3" id="audio4"></audio>
+          <audio src="https://archive.org/download/13-lampara/05%20-%20Sacrificio.mp3" id="audio5"></audio>
+          <audio src="https://archive.org/download/13-lampara/06%20-%20No%20Me%20Arrodillo.mp3" id="audio6"></audio>
+          <audio src="https://archive.org/download/13-lampara/07%20-%20Idonea.mp3" id="audio7"></audio>
+          <audio src="https://archive.org/download/13-lampara/08%20-%20Tire%20La%20Piedra.mp3" id="audio8"></audio>
+          <audio src="https://archive.org/download/13-lampara/09%20-%20Espiritu%20Santo.mp3" id="audio9"></audio>
+          <audio src="https://archive.org/download/13-lampara/10%20-%20Lazaro.mp3" id="audio10"></audio>
+          <audio src="https://archive.org/download/13-lampara/11%20-%20Salvame.mp3" id="audio11"></audio>
+          <audio src="https://archive.org/download/13-lampara/12%20-%20Yiye%20Avila.mp3" id="audio12"></audio>
+          <audio src="https://archive.org/download/13-lampara/13%20-%20Lampara.mp3" id="audio13"></audio>
+          <audio src="https://archive.org/download/13-lampara/14%20-%20Me%20Quieren%20Matar.mp3" id="audio14"></audio>
+          <audio src="https://archive.org/download/13-lampara/15%20-%20El%20Siervo.mp3" id="audio15"></audio>
+          <audio src="https://archive.org/download/13-lampara/16%20-%20Corona.mp3" id="audio16"></audio>
+          <audio src="https://archive.org/download/13-lampara/17%20-%20Tu%20Amor.mp3" id="audio17"></audio>
+          <audio src="https://archive.org/download/13-lampara/18%20-%20Maria.mp3" id="audio18"></audio>
+          <audio src="https://archive.org/download/13-lampara/19%20-%20Hambre.mp3" id="audio19"></audio>
+          <audio src="https://archive.org/download/13-lampara/20%20-%20Cristo%20Conmigo.mp3" id="audio20"></audio>
+          <audio src="https://archive.org/download/13-lampara/21%20-%20Al%20Cielo%20Fue.mp3" id="audio21"></audio>
+          <audio src="https://archive.org/download/13-lampara/22%20-%20La%20Salvacion.mp3" id="audio22"></audio>
+          <audio src="https://archive.org/download/13-lampara/23%20-%20Fiesta.mp3" id="audio23"></audio>
+          <audio src="https://archive.org/download/13-lampara/24%20-%20Bruto.mp3" id="audio24"></audio>
+          <audio src="https://archive.org/download/13-lampara/25%20-%20Sangre%20De%20Cristo.mp3" id="audio25"></audio>
+          <audio src="https://archive.org/download/13-lampara/26%20-%20Sentencia.mp3" id="audio26"></audio>
+          <audio src="https://archive.org/download/13-lampara/27%20-%20Todo%20Los%20Mejoras.mp3" id="audio27"></audio>
+          <audio src="https://archive.org/download/13-lampara/28%20-%20Secretos.mp3" id="audio28"></audio>
+          <audio src="https://archive.org/download/13-lampara/29%20-%20Rapto.mp3" id="audio29"></audio>
+          <audio src="https://archive.org/download/13-lampara/30%20-%20Velo.mp3" id="audio30"></audio>
+          <audio src="https://archive.org/download/13-lampara/31%20-%20Entre%20El%20Bien%20Y%20El%20Mal.mp3" id="audio31"></audio>
+          <audio src="https://archive.org/download/13-lampara/32%20-%20Pongase%20Serio.mp3" id="audio32"></audio>
+
+<!-- Agrega elementos de audio para todas tus canciones -->
+
+        </div>
+
+
+
+<script>
+  // Variable global para almacenar el audio actualmente en reproducción
+var audioActual;
+
+// Obtener todas las canciones y asignar eventos de clic dinámicamente
+var canciones = document.querySelectorAll('.canciones-todo');
+canciones.forEach(function(cancion, index) {
+    cancion.addEventListener('click', function() {
+        reproducirCancion(index + 1);
+        cambiarEstiloMenu(); // Llama a la función para cambiar el estilo del menú
+        var nombre = this.querySelector('.nombre h5').textContent;
+        actualizarNombreCancion(nombre); // Actualiza el nombre de la canción
+    });
+});
+var startY; // Variable para almacenar la posición inicial del desplazamiento
+ 
+ // Función para iniciar el desplazamiento manual
+ function startDrag(e) {
+     startY = e.clientY; // Almacena la posición inicial del desplazamiento
+     document.addEventListener('mousemove', dragMenu);
+     document.addEventListener('mouseup', stopDrag);
+ }
+ 
+ // Función para desplazar el menú mientras se arrastra
+ function dragMenu(e) {
+     var menu = document.querySelector('.menu');
+     var delta = e.clientY - startY; // Calcula el cambio en la posición del mouse
+     menu.scrollTop -= delta; // Desplaza el menú en la dirección opuesta al movimiento del mouse
+     startY = e.clientY; // Actualiza la posición inicial del desplazamiento
+ }
+ 
+ // Función para detener el desplazamiento manual
+ function stopDrag() {
+     document.removeEventListener('mousemove', dragMenu);
+     document.removeEventListener('mouseup', stopDrag);
+ }
+ 
+ // Evento para iniciar el desplazamiento manual al hacer clic en el menú
+ document.querySelector('.menu').addEventListener('mousedown', startDrag);
+ 
+ // Función para cambiar entre el menú normal y extendido
+ function toggleMenu() {
+     var menu = document.querySelector('.menu');
+     menu.classList.toggle('menu-expandido'); // Cambia la clase para alternar entre normal y extendido
+ }
+ 
+ // Evento para cambiar entre el menú normal y extendido al hacer doble clic en el menú
+ document.querySelector('.menu').addEventListener('dblclick', toggleMenu);
+ 
+ 
+// Función para reproducir la canción
+function reproducirCancion(numeroCancion) {
+    // Pausa la canción actual si hay alguna
+    if (audioActual) {
+        audioActual.pause();
+        audioActual.currentTime = 0; // Reinicia la reproducción al principio
+    }
+
+    // Reproduce la canción específica
+    var audio = document.getElementById('audio' + numeroCancion);
+    audio.play();
+
+    // Actualiza la variable de audio actual
+    audioActual = audio;
+
+    // Evento para manejar el tiempo actualizado del audio
+    audioActual.addEventListener('timeupdate', tiempoActualizado);
+}
+
+// Función para manejar el evento de tiempo actualizado del audio
+function tiempoActualizado() {
+    if (audioActual) {
+        actualizarBarraProgreso(audioActual);
+    }
+}
+
+// Obtener la barra de progreso
+var progressBar = document.querySelector('.progress-bar');
+
+// Función para actualizar la barra de progreso
+function actualizarBarraProgreso(audio) {
+    var porcentaje = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = porcentaje + '%';
+}
+
+// Función para cambiar el estilo del menú al seleccionar una canción
+function cambiarEstiloMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.add('menu-expandido');
+    var posterr = document.querySelector('.poster-cancion');
+
+    // Obtener el poster de la canción seleccionada
+    var poster = document.querySelector('.poster');
+    var posterSrc = poster.src;
+
+    // Crear un elemento de imagen para mostrar el poster en el menú expandido
+    var posterMenu = document.createElement('img');
+    posterMenu.classList.add('poster-menu');
+    posterMenu.src = posterSrc;
+
+  
+
+    // Eliminar cualquier poster anterior en el menú expandido
+    var posterMenuAnterior = document.querySelector('.poster-menu');
+    if (posterMenuAnterior) {
+        posterMenuAnterior.remove();
+    }
+
+    // Agregar el poster de la canción seleccionada al menú expandido
+    menu.appendChild(posterMenu);
+    posterMenu.style.display = 'block'; // Mostrar la imagen
+}
+
+// Función para actualizar el nombre de la canción seleccionada
+function actualizarNombreCancion(nombre) {
+    var nombreCancion = document.querySelector('.Nombre-cancion');
+    nombreCancion.textContent = nombre;
+}
+
+// Función para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+function toggleReproduccion() {
+    if (audioActual.paused) {
+        audioActual.play();
+    } else {
+        audioActual.pause();
+    }
+}
+
+// Evento para pausar o reanudar la reproducción al hacer clic en el botón de reproducción
+document.querySelector('.play').addEventListener('click', toggleReproduccion);
+
+</script>
